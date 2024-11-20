@@ -55,12 +55,16 @@ def filter_state(counties, state:str):
 def filter_gt(counties, field:str, threshold:float):
     field_parts = field.split('.')
     category = field_parts[0]
-    subcategory = '.'.join(field_parts[1:])
+    subcategory = field_parts[1]
     filtered = []
     for county in counties:
         try:
             if category == "Education":
                 number = county.education.get(subcategory)
+            elif category == "Ethnicities":
+                number = county.ethnicities.get(subcategory)
+            elif category == "Income":
+                number = county.income.get(subcategory)
             else:
                 raise ValueError(f"Unknown category: {category}")
 
@@ -78,12 +82,16 @@ def filter_gt(counties, field:str, threshold:float):
 def filter_lt(counties, field:str, threshold:float):
     field_parts = field.split('.')
     category = field_parts[0]
-    subcategory = '.'.join(field_parts[1:])
+    subcategory = field_parts[1]
     filtered = []
     for county in counties:
         try:
             if category == "Education":
                 number = county.education.get(subcategory)
+            elif category == "Ethnicities":
+                number = county.ethnicities.get(subcategory)
+            elif category == "Income":
+                number = county.income.get(subcategory)
             else:
                 raise ValueError(f"Unknown category: {category}")
 
@@ -102,7 +110,7 @@ def population(counties, field:str):
     population_count = 0
     field_parts = field.split('.')
     category = field_parts[0]
-    subcategory = '.'.join(field_parts[1:])
+    subcategory = field_parts[1]
 
     for county in counties:
         try:
@@ -132,7 +140,7 @@ def percent(counties, field:str):
     sub_population_percentage = 0
     field_parts = field.split('.')
     category = field_parts[0]
-    subcategory = '.'.join(field_parts[1:])
+    subcategory = field_parts[1]
 
     for county in counties:
         try:
