@@ -1,5 +1,6 @@
 import sys
 import os
+import build_data
 
 import county_demographics
 from build_data import convert_county
@@ -174,7 +175,7 @@ def percent(counties, field:str):
 def operation():
     filename = sys.argv[1]
     try:
-        counties = [convert_county(county) for county in county_demographics.get_report()]  #access the full data set by converting unreadable data to readable
+        counties = build_data.get_data()  #access the full data set by converting unreadable data to readable
         filepath = os.path.join('inputs', filename)
         with open(filepath, 'r') as infile:   #Automatically closes file
             for line in infile:
